@@ -726,7 +726,30 @@ function applyLanguage(lang) {
     });
   }
 
+  applyPollLabels(locale);
   syncPollUI();
+}
+
+/** Опрос: явная подстановка (после общего цикла), чтобы KK/RU не «залипали» из-за порядка ключей или кэша. */
+const POLL_LABEL_IDS = [
+  "nav-poll",
+  "poll-title",
+  "poll-lead",
+  "poll-opt-yes",
+  "poll-opt-partly",
+  "poll-opt-no",
+  "poll-submit",
+];
+
+function applyPollLabels(locale) {
+  const t = locale.text;
+  for (const id of POLL_LABEL_IDS) {
+    const el = document.getElementById(id);
+    const val = t[id];
+    if (el && typeof val === "string" && val.length > 0) {
+      el.textContent = val;
+    }
+  }
 }
 
 const POLL_STORAGE_KEY = "site-poll-v1";
