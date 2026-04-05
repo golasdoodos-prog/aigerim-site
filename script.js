@@ -182,6 +182,16 @@ const i18n = {
       "blog-title": "Жарияланымдар және жаңартулар",
       "blog-subtitle": "Материалдар тұрақты түрде жарияланады: аптасына кемінде бір рет.",
       "all-posts-btn": "Барлық жарияланымдар",
+      "nav-poll": "Сауалнама",
+      "poll-title": "Қысқаша сауалнама",
+      "poll-lead":
+        "Дауыс тек осы браузерде сақталады; барлық келушілердің ортақ статистикасы жинақталмайды (сервер жоқ).",
+      "poll-opt-yes": "Иә, материалдар пайдалы",
+      "poll-opt-partly": "Жарым-жартылай",
+      "poll-opt-no": "Жоқ / әлі қараған жоқпын",
+      "poll-submit": "Жіберу",
+      "poll-your-choice": "Сіздің таңдауыңыз:",
+      "poll-thanks": "Рахмет!",
       "post-1-title": "Оқу мазасыздығын 10 минутта төмендету жолы",
       "post-1-text":
         "24 ақпан күні мектеп психологы жоспарына сәйкес 3 «В» сынып оқушыларымен «Мейірім мен қиялға толы бір сағат» тақырыбында психологиялық сағат өткізілді.",
@@ -356,6 +366,16 @@ const i18n = {
       "blog-title": "Публикации и обновления",
       "blog-subtitle": "Материалы публикуются регулярно: не реже одного раза в неделю.",
       "all-posts-btn": "Все публикации",
+      "nav-poll": "Опрос",
+      "poll-title": "Короткий опрос",
+      "poll-lead":
+        "Голос сохраняется только в этом браузере; общей статистики по всем посетителям нет (без сервера).",
+      "poll-opt-yes": "Да, материалы полезны",
+      "poll-opt-partly": "Отчасти",
+      "poll-opt-no": "Нет / ещё не смотрел(а)",
+      "poll-submit": "Отправить",
+      "poll-your-choice": "Ваш выбор:",
+      "poll-thanks": "Спасибо!",
       "post-1-title": "Как снизить учебную тревожность за 10 минут",
       "post-1-text":
         "24 февраля в соответствии с планом школьного психолога с учениками 3 «В» класса был проведен психологический час на тему «Час, наполненный добротой и воображением».",
@@ -705,6 +725,35 @@ function applyLanguage(lang) {
       btn.setAttribute("aria-label", locale.carouselNext);
     });
   }
+
+  syncPollUI();
+}
+
+const POLL_STORAGE_KEY = "site-poll-v1";
+
+function pollChoiceLabel(lang, value) {
+  const locale = i18n[lang] || i18n.kk;
+  const key = { yes: "poll-opt-yes", partly: "poll-opt-partly", no: "poll-opt-no" }[value];
+  return key ? locale.text[key] : value;
+}
+
+function syncPollUI() {
+  const form = document.getElementById("poll-form");
+  const statusEl = document.getElementById("poll-status");
+  if (!form || !statusEl) {
+    return;
+  }
+  const saved = localStorage.getItem(POLL_STORAGE_KEY);
+  const locale = i18n[currentLang] || i18n.kk;
+  if (saved && ["yes", "partly", "no"].includes(saved)) {
+    form.hidden = true;
+    statusEl.hidden = false;
+    statusEl.textContent = `${locale.text["poll-your-choice"]} ${pollChoiceLabel(currentLang, saved)}. ${locale.text["poll-thanks"]}`;
+  } else {
+    form.hidden = false;
+    statusEl.hidden = true;
+    statusEl.textContent = "";
+  }
 }
 
 async function initCarousels() {
@@ -851,6 +900,20 @@ if (feedbackForm && status) {
 
     status.textContent = locale.success;
     feedbackForm.reset();
+  });
+}
+
+const pollForm = document.getElementById("poll-form");
+if (pollForm) {
+  pollForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(pollForm);
+    const value = data.get("site-poll");
+    if (value !== "yes" && value !== "partly" && value !== "no") {
+      return;
+    }
+    localStorage.setItem(POLL_STORAGE_KEY, value);
+    syncPollUI();
   });
 }
 
