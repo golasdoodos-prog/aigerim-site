@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect fill="#e8ebe4" width="800" height="450"/>
+  <rect x="280" y="140" width="240" height="140" rx="8" fill="#c5d4c8" opacity="0.6"/>
+  <circle cx="400" cy="195" r="28" fill="none" stroke="#6b7f72" stroke-width="3"/>
+  <circle cx="400" cy="195" r="10" fill="#6b7f72"/>
+  <text x="400" y="310" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#5f6c82">$>B>=K >AK 65@35 6�:B5�V7 (images/&)</text>
+</svg>
