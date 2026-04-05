@@ -635,6 +635,24 @@ const i18n = {
   },
 };
 
+/** «Тағы тесттер» қазақ мәтіні тек HTML-де; ru i18n оны ауыстырады. Қазаққа қайтуда осы снимок қалпына келеді. */
+const pextraKkSnapshot = {};
+
+function capturePextraKkSnapshotFromDom() {
+  document.querySelectorAll('[id^="pextra-"]').forEach((el) => {
+    pextraKkSnapshot[el.id] = el.innerHTML;
+  });
+}
+
+function restorePextraKkFromSnapshot() {
+  Object.entries(pextraKkSnapshot).forEach(([id, html]) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.innerHTML = html;
+    }
+  });
+}
+
 function applyLanguage(lang) {
   const locale = i18n[lang] || i18n.kk;
   document.documentElement.lang = lang;
@@ -650,6 +668,10 @@ function applyLanguage(lang) {
 
   if (langToggle) {
     langToggle.textContent = locale.langButton;
+  }
+
+  if (lang === "kk") {
+    restorePextraKkFromSnapshot();
   }
 
   Object.entries(locale.text).forEach(([id, value]) => {
@@ -832,5 +854,6 @@ if (feedbackForm && status) {
   });
 }
 
+capturePextraKkSnapshotFromDom();
 applyLanguage(currentLang);
 void initCarousels();
