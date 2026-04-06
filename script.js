@@ -85,6 +85,9 @@ const i18n = {
       "focus-3": "Баланың даму мәселелері бойынша ата-аналарға кеңес беру",
       "focus-4": "Сөйлеу дамуы мен оқу дағдылары бойынша түзету жұмысы",
       "about-title": "Маман туралы",
+      "about-photo-alt":
+        "Айгерим Кокиева — психолог, алғыс хат (ресми марапат).",
+      "about-photo-caption": "Мектеп психологы — жеке ресми парақша",
       "about-card1-title": "Кәсіби ұстаным",
       "about-card1-text":
         "Жұмыс барысында өзара құрмет, құпиялылық және психологиялық қолдауда дәлелді тәсіл қағидаларын ұстанамын.",
@@ -269,6 +272,9 @@ const i18n = {
       "focus-3": "Консультирование родителей по вопросам развития ребенка",
       "focus-4": "Коррекционная работа по развитию речи и учебных навыков",
       "about-title": "О специалисте",
+      "about-photo-alt":
+        "Айгерим Кокиева — психолог с благодарственным письмом (официальная награда).",
+      "about-photo-caption": "Школьный психолог — личная официальная страница",
       "about-card1-title": "Профессиональная позиция",
       "about-card1-text":
         "В работе придерживаюсь принципов уважительного взаимодействия, конфиденциальности и доказательного подхода к психологическому сопровождению.",
@@ -695,7 +701,7 @@ function applyLanguage(lang) {
   }
 
   Object.entries(locale.text).forEach(([id, value]) => {
-    if (id === "perception-img-alt") {
+    if (id === "perception-img-alt" || id === "about-photo-alt") {
       return;
     }
     if (lang === "kk" && id.startsWith("pextra-")) {
@@ -711,6 +717,12 @@ function applyLanguage(lang) {
   const perceptionAlt = locale.text["perception-img-alt"];
   if (perceptionImg && perceptionAlt) {
     perceptionImg.alt = perceptionAlt;
+  }
+
+  const aboutPhoto = document.getElementById("about-photo");
+  const aboutPhotoAlt = locale.text["about-photo-alt"];
+  if (aboutPhoto && aboutPhotoAlt) {
+    aboutPhoto.alt = aboutPhotoAlt;
   }
 
   fillPextraPictureBodies(lang);

@@ -53,10 +53,59 @@ a {
   justify-content: space-between;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: inherit;
+  margin-right: 0.35rem;
+}
+
+.brand:hover .logo {
+  color: var(--primary-dark);
+}
+
+.brand-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 12%;
+  border: 2px solid rgba(61, 79, 70, 0.2);
+  box-shadow: 0 2px 12px rgba(31, 42, 61, 0.08);
+  flex-shrink: 0;
+}
+
 .logo {
   font-weight: 800;
   letter-spacing: 0.2px;
   color: var(--text);
+}
+
+.about-figure {
+  margin: 0 auto 1.5rem;
+  max-width: 280px;
+  text-align: center;
+}
+
+.about-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(52vh, 380px);
+  object-fit: cover;
+  object-position: 50% 8%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.about-photo-caption {
+  margin: 0.65rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--muted);
 }
 
 .menu {
@@ -1110,6 +1159,11 @@ html[lang="ru"] .five-secrets-transcript {
 }
 
 @media (max-width: 760px) {
+  .brand-photo {
+    width: 40px;
+    height: 40px;
+  }
+
   .menu-toggle {
     display: inline-block;
   }

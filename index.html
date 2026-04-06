@@ -13,7 +13,18 @@
 <body>
   <header class="header">
     <div class="container nav">
-      <a id="logo-text" class="logo" href="#home">Айгерим Кокиева</a>
+      <a class="brand" href="#home">
+        <img
+          class="brand-photo"
+          src="images/author.png"
+          alt=""
+          width="48"
+          height="48"
+          loading="eager"
+          decoding="async"
+        >
+        <span id="logo-text" class="logo">Айгерим Кокиева</span>
+      </a>
       <button id="menu-toggle" class="menu-toggle" aria-label="Мәзірді ашу">☰</button>
       <nav class="menu">
         <a id="nav-about" href="#about">Маман туралы</a>
@@ -59,6 +70,21 @@
     <section id="about" class="section">
       <div class="container">
         <h2 id="about-title">Маман туралы</h2>
+        <figure class="about-figure">
+          <img
+            id="about-photo"
+            class="about-photo"
+            src="images/author.png"
+            alt=""
+            width="560"
+            height="840"
+            loading="lazy"
+            decoding="async"
+          >
+          <figcaption id="about-photo-caption" class="about-photo-caption">
+            Мектеп психологы — жеке ресми парақша
+          </figcaption>
+        </figure>
         <div class="cards three">
           <article class="card">
             <h3 id="about-card1-title">Кәсіби ұстаным</h3>
