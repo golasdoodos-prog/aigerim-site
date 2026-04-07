@@ -71,7 +71,7 @@ a {
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: 50% 12%;
+  object-position: 50% 28%;
   border: 2px solid rgba(61, 79, 70, 0.2);
   box-shadow: 0 2px 12px rgba(31, 42, 61, 0.08);
   flex-shrink: 0;
@@ -95,7 +95,7 @@ a {
   height: auto;
   max-height: min(52vh, 380px);
   object-fit: cover;
-  object-position: 50% 8%;
+  object-position: 50% 22%;
   border-radius: 14px;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
@@ -667,6 +667,20 @@ textarea:focus {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+}
+
+.footer-branding {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.footer-created {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(219, 229, 223, 0.78);
+  line-height: 1.35;
 }
 
 .footer a {
